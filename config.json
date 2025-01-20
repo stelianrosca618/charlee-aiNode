@@ -1,0 +1,7 @@
+﻿{
+    "connectionString": "mongodb://localhost:27017/flygsupportDB",
+    "secret": "THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING",
+    "zendeskUrl": "https://flygsupport.zendesk.com",
+    "zendeskEmail": "info@flygsupport.se",
+    "zendeskKey": "AgKpKwJ5gI9ajHYxtuf9PyrwTQsnIS64CmVNcV1M"
+}
