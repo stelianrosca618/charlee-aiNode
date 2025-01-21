@@ -30,27 +30,26 @@ const mailjet = new Mailjet({
                 .request({
                     Messages: [{
                         From: {
-                                Email: "mike@charlee.ai",
-                                Name: "charlee.ai"
-                                //Email: to,
-                                //Name: toName
+                            // Email: "mike@charlee.ai",
+                            // Name: "charlee.ai"
+                            Email: 'stelianrosca618@outlook.com',
+                            Name: 'stelian'
                         },
                         To: [{
-                            
-                            Email: "mike@charlee.ai",
-                            Name: "charlee.ai"
+                            Email: "vtask118@outlook.com",
+                            Name: "vtask"
                         }],
                         Cc: [
-                                {
-                                        Email: to,
-                                        Name: toName
-                                }
+                            {
+                                Email: to,
+                                Name: toName
+                            }
                         ],
                         Bcc: [
-                                {
-                                        Email: to,
-                                        Name: toName
-                                }
+                            {
+                                Email: to,
+                                Name: toName
+                            }
                         ],
                         Subject: subject,
                         TextPart: text,
