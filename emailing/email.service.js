@@ -38,22 +38,19 @@ const mailjet = new Mailjet({
                         To: [{
                             Email: "mike@charlee.ai",
                             Name: "charlee.ai"
-                        },{
-                            Email: 'stelianrosca618@outlook.com',
-                            Name: 'stelian'
                         }],
-                        Cc: [
-                            {
-                                Email: to,
-                                Name: toName
-                            }
-                        ],
-                        Bcc: [
-                            {
-                                Email: to,
-                                Name: toName
-                            }
-                        ],
+                        // Cc: [
+                        //     {
+                        //         Email: to,
+                        //         Name: toName
+                        //     }
+                        // ],
+                        // Bcc: [
+                        //     {
+                        //         Email: to,
+                        //         Name: toName
+                        //     }
+                        // ],
                         Subject: subject,
                         TextPart: text,
                         HTMLPart: html,
