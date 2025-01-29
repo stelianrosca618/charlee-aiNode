@@ -8,6 +8,8 @@ function jwt() {
     return expressJwt({ secret, algorithms: ['HS256'], isRevoked }).unless({
         path: [
             // public routes that don't require authentication
+            '/email/send-contact-us',
+            '/email/send-learn-mode',
             '/email/send-request-demo',
             '/email/send',
             '/users/authenticate',

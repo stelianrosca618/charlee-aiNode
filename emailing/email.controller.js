@@ -3,6 +3,8 @@ const router = express.Router();
 const emailService = require('./email.service');
 
 router.post('/send', sendEmail);
+router.post('/send-contact-us', sendContactUsEmail);
+router.post('/send-learn-mode', sendLearnModeEmail);
 router.post('/send-request-demo', sendRequestDemoEmail);
 router.post('/send-template', sendTemplateEmail);
 
@@ -24,6 +26,23 @@ async function sendEmail(req, res, next) {
     }
 }
 
+async function sendContactUsEmail(req, res, next) {
+    try {
+        const result = await emailService.sendContactUsEmail(req.body);
+        res.json(result);
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function sendLearnModeEmail(req, res, next) {
+    try {
+        const result = await emailService.sendLearnModeEmail(req.body);
+        res.json(result);
+    } catch (error) {
+        next(error);
+    }
+}
 async function sendRequestDemoEmail(req, res, next) {
     try {
         const result = await emailService.sendRequestDemoEmail(req.body);
