@@ -95,14 +95,14 @@ const mailjet = new Mailjet({
                             Name: "charlee.ai"
                         },
                         To: [
-                        //     {
-                        //     Email: "mike@charlee.ai",
-                        //     Name: "charlee.ai"
-                        // },
-                        {
-                            Email: 'stelianrosca618@outlook.com',
-                            Name: 'stelian'
-                        }
+                            {
+                            Email: "mike@charlee.ai",
+                            Name: "charlee.ai"
+                        },
+                        // {
+                        //     Email: 'stelianrosca618@outlook.com',
+                        //     Name: 'stelian'
+                        // }
                     ],
                         // Cc: [
                         //     {
@@ -147,14 +147,14 @@ const mailjet = new Mailjet({
                             Name: "charlee.ai"
                         },
                         To: [
-                        //     {
-                        //     Email: "mike@charlee.ai",
-                        //     Name: "charlee.ai"
-                        // },
-                        {
-                            Email: 'stelianrosca618@outlook.com',
-                            Name: 'stelian'
-                        }
+                            {
+                            Email: "mike@charlee.ai",
+                            Name: "charlee.ai"
+                        },
+                        // {
+                        //     Email: 'stelianrosca618@outlook.com',
+                        //     Name: 'stelian'
+                        // }
                     ],
                         // Cc: [
                         //     {
@@ -199,14 +199,14 @@ const mailjet = new Mailjet({
                             Name: "charlee.ai"
                         },
                         To: [
-                        //     {
-                        //     Email: "mike@charlee.ai",
-                        //     Name: "charlee.ai"
-                        // },
-                        {
-                            Email: 'stelianrosca618@outlook.com',
-                            Name: 'stelian'
-                        }
+                            {
+                            Email: "mike@charlee.ai",
+                            Name: "charlee.ai"
+                        },
+                        // {
+                        //     Email: 'stelianrosca618@outlook.com',
+                        //     Name: 'stelian'
+                        // }
                     ],
                         // Cc: [
                         //     {
