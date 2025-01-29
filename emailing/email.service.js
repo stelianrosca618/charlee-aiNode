@@ -10,7 +10,8 @@ const mailjet = new Mailjet({
     
     module.exports = {
         sendEmail,
-        sendTemplateEmail
+        sendTemplateEmail,
+        sendRequestDemoEmail
     };
     
     /**
@@ -39,18 +40,18 @@ const mailjet = new Mailjet({
                             Email: "mike@charlee.ai",
                             Name: "charlee.ai"
                         }],
-                        // Cc: [
-                        //     {
-                        //         Email: to,
-                        //         Name: toName
-                        //     }
-                        // ],
-                        // Bcc: [
-                        //     {
-                        //         Email: to,
-                        //         Name: toName
-                        //     }
-                        // ],
+                        Cc: [
+                            {
+                                Email: to,
+                                Name: toName
+                            }
+                        ],
+                        Bcc: [
+                            {
+                                Email: to,
+                                Name: toName
+                            }
+                        ],
                         Subject: subject,
                         TextPart: text,
                         HTMLPart: html,
@@ -80,6 +81,53 @@ const mailjet = new Mailjet({
      * @param {number} options.templateId Mailjet template ID
      * @param {Object} options.variables Template variables
      */
+
+    async function sendRequestDemoEmail({ to, toName, variables }) {
+        try {
+            const response = await mailjet
+                .post('send', { version: 'v3.1' })
+                .request({
+                    Messages: [{
+                        From: {
+                            Email: "mike@charlee.ai",
+                            Name: "charlee.ai"
+                        },
+                        To: [{
+                            Email: "mike@charlee.ai",
+                            Name: "charlee.ai"
+                        }],
+                        Cc: [
+                            {
+                                Email: to,
+                                Name: toName
+                            }
+                        ],
+                        Bcc: [
+                            {
+                                Email: to,
+                                Name: toName
+                            }
+                        ],
+                        TemplateID: '6680550',
+                        TemplateLanguage: true,
+                        Variables: variables
+                    }]
+                });
+    
+            return {
+                success: true,
+                messageId: response.body.Messages[0].Id
+            };
+        } catch (error) {
+            console.error('Mailjet template error:', error);
+            throw {
+                success: false,
+                error: error.message,
+                statusCode: error.statusCode
+            };
+        }
+    }
+
     async function sendTemplateEmail({ to, toName, templateId, variables }) {
         try {
             const response = await mailjet

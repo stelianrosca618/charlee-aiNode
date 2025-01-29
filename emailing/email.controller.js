@@ -3,6 +3,7 @@ const router = express.Router();
 const emailService = require('./email.service');
 
 router.post('/send', sendEmail);
+router.post('/send-request-demo', sendRequestDemoEmail);
 router.post('/send-template', sendTemplateEmail);
 
 module.exports = router;
@@ -17,6 +18,15 @@ async function sendEmail(req, res, next) {
         //     text: "Welcome to our service",
         //     html: "<h1>Welcome to our service</h1>"
         // });
+        res.json(result);
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function sendRequestDemoEmail(req, res, next) {
+    try {
+        const result = await emailService.sendRequestDemoEmail(req.body);
         res.json(result);
     } catch (error) {
         next(error);
