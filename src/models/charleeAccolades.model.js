@@ -109,7 +109,7 @@ class CharleeAccolades {
       ORDER BY ${orderClause}
       LIMIT ? OFFSET ?
     `;
-
+    console.log(sql);
     const values = searchWord
       ? [`%${searchWord}%`, `%${searchWord}%`, limit, offset]
       : [limit, offset];
@@ -125,16 +125,16 @@ class CharleeAccolades {
           filterConditionStrs.push(`ContentType IN (${values.map(value => `'${value}'`).join(', ')})`);
           break;
         case 'LOB'.toLowerCase():
-          filterConditionStrs.push(values.map(id => `FIND_IN_SET('${id}', LOB)`).join(' OR '));
+          filterConditionStrs.push(values.map(id => `LOB LIKE '%${id}%'`).join(' OR '));
           break;
         case 'Role'.toLowerCase():
-          filterConditionStrs.push(values.map(id => `FIND_IN_SET('${id}', Role)`).join(' OR '));
+          filterConditionStrs.push(values.map(id => `Role LIKE '%${id}%'`).join(' OR '));
           break;
         case 'Product'.toLowerCase():
           filterConditionStrs.push(`Product IN (${values.map(value => `'${value}'`).join(', ')})`);
           break;
         case 'Area'.toLowerCase():
-          filterConditionStrs.push(values.map(id => `FIND_IN_SET('${id}', Area)`).join(' OR '));
+          filterConditionStrs.push(values.map(id => `Area LIKE '%${id}%'`).join(' OR '));
           break;
       }
     })
