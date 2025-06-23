@@ -13,7 +13,7 @@ class User {
     const hashedPassword = await bcrypt.hash(password, salt);
     
     const sql = `
-      INSERT INTO ${this.tableName} (name, email, password)
+      INSERT INTO ${this.tableName} (UserFullName, UserLogin, UserPwd)
       VALUES (?, ?, ?)
     `;
     
@@ -24,9 +24,9 @@ class User {
   // Find user by ID
   static async findById(id) {
     const sql = `
-      SELECT id, name, email, created_at, updated_at
+      SELECT user_id, UserFullName, UserLogin, created_at, updated_at
       FROM ${this.tableName}
-      WHERE id = ?
+      WHERE user_id = ?
     `;
     
     const users = await db.query(sql, [id]);
@@ -36,9 +36,9 @@ class User {
   // Find user by email
   static async findByEmail(email) {
     const sql = `
-      SELECT id, name, email, password, created_at, updated_at
+      SELECT user_id, UserFullName, UserLogin, created_at, updated_at
       FROM ${this.tableName}
-      WHERE email = ?
+      WHERE UserLogin = ?
     `;
     
     const users = await db.query(sql, [email]);
@@ -52,24 +52,24 @@ class User {
     
     // Only update provided fields
     if (userData.name) {
-      fields.push('name = ?');
+      fields.push('UserFullName = ?');
       values.push(userData.name);
     }
     
     if (userData.email) {
-      fields.push('email = ?');
+      fields.push('UserLogin = ?');
       values.push(userData.email);
     }
     
     if (userData.password) {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(userData.password, salt);
-      fields.push('password = ?');
+      fields.push('UserPwd = ?');
       values.push(hashedPassword);
     }
     
     // Add updated_at field
-    fields.push('updated_at = NOW()');
+    // fields.push('updated_at = NOW()');
     
     // Add id for WHERE clause
     values.push(id);
@@ -77,7 +77,7 @@ class User {
     const sql = `
       UPDATE ${this.tableName}
       SET ${fields.join(', ')}
-      WHERE id = ?
+      WHERE user_id = ?
     `;
     
     const result = await db.query(sql, values);
@@ -88,7 +88,7 @@ class User {
   static async delete(id) {
     const sql = `
       DELETE FROM ${this.tableName}
-      WHERE id = ?
+      WHERE user_id = ?
     `;
     
     const result = await db.query(sql, [id]);
@@ -100,7 +100,7 @@ class User {
     const offset = (page - 1) * limit;
     
     const sql = `
-      SELECT id, name, email, created_at, updated_at
+      SELECT user_id, UserFullName, UserLogin, lastAccess,
       FROM ${this.tableName}
       ORDER BY created_at DESC
       LIMIT ? OFFSET ?
