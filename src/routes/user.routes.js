@@ -1,5 +1,6 @@
 const express = require('express');
 const { 
+  loginUser,
   getAllUsers, 
   getUserById, 
   createUser, 
@@ -12,7 +13,8 @@ const {
 } = require('../middleware/validators');
 
 const router = express.Router();
-
+//login user
+router.post('/login', loginUser);
 // GET all users
 router.get('/', getAllUsers);
 

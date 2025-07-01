@@ -2,7 +2,7 @@ const db = require('../config/database');
 const bcrypt = require('bcrypt');
 
 class User {
-  static tableName = 'users';
+  static tableName = 'Users';
 
   // Create a new user
   static async create(userData) {
@@ -24,7 +24,7 @@ class User {
   // Find user by ID
   static async findById(id) {
     const sql = `
-      SELECT user_id, UserFullName, UserLogin, created_at, updated_at
+      SELECT user_id, UserFullName, UserLogin
       FROM ${this.tableName}
       WHERE user_id = ?
     `;
@@ -36,7 +36,7 @@ class User {
   // Find user by email
   static async findByEmail(email) {
     const sql = `
-      SELECT user_id, UserFullName, UserLogin, created_at, updated_at
+      SELECT user_id, UserFullName, UserLogin, UserPwd, lastAccess
       FROM ${this.tableName}
       WHERE UserLogin = ?
     `;
@@ -102,7 +102,6 @@ class User {
     const sql = `
       SELECT user_id, UserFullName, UserLogin, lastAccess,
       FROM ${this.tableName}
-      ORDER BY created_at DESC
       LIMIT ? OFFSET ?
     `;
     

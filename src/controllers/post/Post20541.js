@@ -1,0 +1,30 @@
+export const Post20541 = () => {
+    return(
+        <div class="w-full text-left">  
+            <div className="w-full min-h-[400px] md:min-h-[500px] rounded-xl" style={{background: `url(/blog-photos/Charlee.ai-Improves-Risk-Selection.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}></div>
+            <p className="mt-4">Commercial automobile insurance plays a vital role in our economy and is critical to the supply chain infrastructure. Think of the different types of commercial vehicles on our highways: delivery vehicles, utility trucks, box trucks, cargo vans, cement mixers, limousines, passenger buses, pickup trucks, and ubiquitous construction vehicles are critical to our supply chain infrastructure. In addition, the “big rigs” (tractor and semi-trailers) operate on our highways around the clock every day of the week in all types of weather conditions and on all kinds of roadways.</p>
+            <h3 className="mt-4 text-[22px] font-bold">Charlee.ai™ Improves Risk Selection, Lowers Claim Severity, and Mitigates Litigation for Insurance Claims</h3>
+            <p className="mt-4">Traffic collisions involving commercial vehicles can be costly and have risen in the last few years. On average, there are 500,000 commercial vehicle accidents every year, with one death or seriously injured party in an accident every 15 minutes. Consider the factors related to commercial vehicles (truck tractor and semi-trailer configuration) and their unique risks:</p>
+            <p className="mt-4">The total weight allowed for commercial vehicles:</p>
+            <ul className="list-disc list-outside pl-4 mt-4">
+                <li>Single axle: 20,000 pounds</li>
+                <li>Tandem axle: 34,000 pounds</li>
+                <li>Gross Vehicle Weight: 80,000 pounds</li>
+                <li>The average weight of a passenger vehicle: 4,156 pounds.</li>
+                <li>In accidents involving one commercial vehicle and one passenger vehicle, 56 percent of passenger cars and 44 percent of trucks were responsible for the crash ( <a href="https://www.fmcsa.dot.gov/research-and-analysis/research/large-truck-crash-causation-study">Large Truck Crash Causation Study</a>) </li>
+            </ul>
+            
+            <div className="mt-8 w-full min-h-[400px] md:min-h-[500px] rounded-xl" style={{background: `url(/blog-photos/Commercial-Vehicle-Claims-1.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+            <p className="mt-4">Compared to a typical passenger vehicle involved in a collision, the commercial vehicles’ sheer size and weight will result in severe damage and injuries. Identifying risks and exposures with artificial intelligence will lead to lower severity and avoid litigation.</p>
+            <h3 className="mt-4 text-[22px] font-bold">Litigation and Severity</h3>
+            <p className="mt-4">The <a href="https://hdfleet.com/cost-of-a-truck-accident-to-a-company/">average cost</a> of a commercial vehicle accident where one person was injured is $148,279, and a fatality is $7.2 million. These numbers quickly rise in an insurance claim with multiple persons and injuries. </p>
+            <p className="mt-4">A recent <a href="https://www.advisen.com/tools/fpnproc/fpns/articles_new_1/P/421943386.html?rid=421943386&amp;list_id=1">Advisen</a> article points out that in 2019, claims involving an attorney cost 14 times more on average than a claim without attorney involvement. These claims represented less than 30 percent of all commercial automobile claims; however, they accounted for 86.7% of total losses and loss adjustment expenses. Insurers need to gain control of these spiking costs by leveraging better insights into the claims and underwriting process. In 2019, claims costing more than $500,000 involving an attorney took 1,272 days to close on average. And the time trusted axiom in insurance, “The longer the claim is open, the more expensive it will be,” has never been more accurate. </p>
+            <p className="mt-4">The InsureTech race brings new ideas and technologies to the insurance industry at a lightning pace. The advances in artificial intelligence, specifically machine learning and natural language processing, can quickly lead to insights to mitigate and control high severity claims. In addition, there is now the ability to predict if a claim will fall into litigation weeks before an attorney is involved.</p>
+
+            <div className="mt-8 w-full min-h-[400px] md:min-h-[500px] rounded-xl" style={{background: `url(/blog-photos/Vehicle-Claims-with-Artificial-Intelligence.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+            <h3 className="mt-4 text-[22px] font-bold">Charlee.ai™ – The First Insurance Insights Engine with Natural Language Processing</h3>
+            <p className="mt-4">Your claims data system contains millions and millions of patterns to identify severity, litigation, and fraud to be proactive in reducing costs. The unstructured text within claim files includes the most insights for topics, entities, and behavior patterns leading to high severity and litigation. Imagine being able to quickly take the appropriate actions to mitigate claims heading for increased severity and litigation weeks before things go wrong and taking preemptive steps to minimize the problem. The Charlee.ai™ solution provides alerts, red flags, and predictions to help your claims and underwriting teams. In addition, the Charlee.ai™ solution is trained on over 50 million claims and has 50,000 artificial intelligence-generated insights ready to go to help your insurance claim and underwriting processes.</p>
+            <p className="mt-4">Contact us today to learn more about Charlee.ai</p>
+        </div>
+    );
+}

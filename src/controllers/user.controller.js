@@ -1,4 +1,53 @@
 const User = require('../models/user.model');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+
+//user login
+const loginUser = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    // Find user by email
+    const user = await User.findByEmail(email);
+    if (!user) {
+      const error = new Error('Invalid email or password');
+      error.status = 401;
+      throw error;
+    }
+
+    // Compare password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    console.log(`Has`, hashedPassword);
+    console.log(`Haa`, user);
+    const isMatch = await bcrypt.compare(password, user.UserPwd);
+    if (!isMatch) {
+      const error = new Error('Invalid email or password');
+      error.status = 401;
+      throw error;
+    }
+
+    // Generate JWT token
+    const token = jwt.sign(
+      { id: user.id, email: user.email },
+      process.env.JWT_SECRET || 'your_jwt_secret',
+      { expiresIn: '7d' }
+    );
+
+    res.status(200).json({
+      success: true,
+      token,
+      user: {
+        id: user.user_id,
+        email: user.UserLogin,
+        name: user.UserFullName
+        // add other fields as needed
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 // Get all users
 const getAllUsers = async (req, res, next) => {
@@ -50,6 +99,7 @@ const getUserById = async (req, res, next) => {
 const createUser = async (req, res, next) => {
   try {
     // Check if email already exists
+    console.log(req.body);
     const existingUser = await User.findByEmail(req.body.email);
     
     if (existingUser) {
@@ -144,5 +194,6 @@ module.exports = {
   getUserById,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  loginUser
 };

@@ -5,6 +5,7 @@ const { PORT } = require('./config/env');
 const db = require('./config/database');
 const routes = require('./routes');
 const logger = require('./utils/logger');
+const path = require('path');
 const requestLogger = require('./middleware/requestLogger');
 const { notFoundHandler, errorHandler } = require('./middleware/errorHandler');
 
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 app.use(requestLogger); // Request logging
 
 // API routes
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api', routes);
 
 // Error handling
