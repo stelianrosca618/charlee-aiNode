@@ -4,6 +4,7 @@ const productRoutes = require('./product.routes');
 const charleeAccoladesRoutes = require('./charleeAccolades.routes');
 const fileUploadRoutes = require('./fileUpload.routes');
 const blogsRoutes = require('./blogs.routes'); // Assuming blogs.routes.js exists
+const newsRoutes = require('./news.routes'); // Assuming news.routes.js exists
 const modifyRoutes = require('./modify.routes'); // Assuming modify.routes.js exists
 const router = express.Router();
 
@@ -28,4 +29,5 @@ router.use('/products', productRoutes);
 router.use('/files', fileUploadRoutes);
 router.use('/blogs', blogsRoutes); // Assuming blogs.routes.js exists
 router.use('/modify', modifyRoutes); // Assuming modify.routes.js exists
+router.use('/news', newsRoutes); // Assuming news.routes.js exists
 module.exports = router;

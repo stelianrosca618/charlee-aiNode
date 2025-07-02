@@ -1,10 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 const Blog = require('../models/blogs.model');
+const News = require('../models/news.model');
 // Load blogs.json
 console.log('Loading blogs.json...', __dirname);
 const blogsPath = path.join(__dirname, 'blogs.json');
 const blogs = JSON.parse(fs.readFileSync(blogsPath, 'utf-8'));
+const newsPath = path.join(__dirname, 'news.json');
+const news = JSON.parse(fs.readFileSync(newsPath, 'utf-8'));
 
 async function getHtmlFromPostFile(postId) {
   const postFile = path.join(__dirname, 'post', `Post${postId}.js`);
@@ -80,6 +83,38 @@ exports.insertBlogDB = async (req, res) => {
     console.error('Error inserting blog into DB:', error);
     res.status(500).json({
       message: 'Error inserting blog into DB',
+      error: error.message
+    });
+  }
+}
+
+exports.insertNewsDB = async (req, res) => {
+  try {
+    await Promise.all(
+      news.map(async (newsItem) => {
+        const newsData = {
+          ContentType: 'News',
+          Description: '',
+          Title: newsItem.title,
+          Graphic1: newsItem.postMedia,
+          Graphic2: null,
+          Body: null,
+          Source: newsItem.link,
+          DatePublished: newsItem.postDate,
+          Relevance: newsItem.postName,
+          Status: 'Active',
+          LastUpdated: newsItem.postDate,
+          LastUpdatedBy: 'Charlee AI',
+          PDFVersion: 0
+        };
+        const addedNews = await News.create(newsData);
+      })
+    );
+    res.status(201).json('addedNews');
+  } catch (error) {
+    console.error('Error inserting news into DB:', error);
+    res.status(500).json({
+      message: 'Error inserting news into DB',
       error: error.message
     });
   }
