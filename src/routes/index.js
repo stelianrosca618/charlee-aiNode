@@ -6,6 +6,7 @@ const fileUploadRoutes = require('./fileUpload.routes');
 const blogsRoutes = require('./blogs.routes'); // Assuming blogs.routes.js exists
 const newsRoutes = require('./news.routes'); // Assuming news.routes.js exists
 const modifyRoutes = require('./modify.routes'); // Assuming modify.routes.js exists
+const emailRoutes = require('./email.routes'); // Assuming email.routes.js exists
 const router = express.Router();
 
 // API Information route
@@ -23,6 +24,7 @@ router.get('/', (req, res) => {
 });
 
 // API Routes
+router.use('/email', emailRoutes); 
 router.use('/charlee-accolades', charleeAccoladesRoutes);
 router.use('/users', userRoutes);
 router.use('/products', productRoutes);

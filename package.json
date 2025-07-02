@@ -24,6 +24,7 @@
     "morgan": "^1.10.0",
     "multer": "^2.0.1",
     "mysql2": "^3.6.5",
+    "node-mailjet": "^6.0.8",
     "winston": "^3.11.0"
   },
   "devDependencies": {
