@@ -77,6 +77,19 @@ class News {
     return result.affectedRows > 0;
   }
 
+  static async findNewsAll() {
+    let sql = `
+      SELECT Id, ContentType, Title, DatePublished, Graphic1, Relevance, Source
+      FROM ${this.tableName}
+      ORDER BY DatePublished DESC
+    `;
+    const params = [];
+
+    return await db.query(sql, params);
+  }
+
+
+
   // Get all news with pagination and filtering
   static async findAll(options = {}) {
     const {

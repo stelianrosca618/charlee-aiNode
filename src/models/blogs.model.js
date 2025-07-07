@@ -27,6 +27,16 @@ class Blog {
     return result.insertId;
   }
 
+  //Find Blog by slug
+  static async findByName(name) {
+    const sql = `
+      SELECT *
+      FROM ${this.tableName}
+      WHERE Relevance = ?
+    `;
+    const blogs = await db.query(sql, [name]);
+    return blogs[0] || null;
+  }
   // Find blog by ID
   static async findById(id) {
     const sql = `
@@ -78,6 +88,16 @@ class Blog {
     return result.affectedRows > 0;
   }
 
+  static async findBlogsAll() {
+    let sql = `
+      SELECT id, Content_Type, Title, DateWritten, Graphic1, Relevance, Author, Description
+      FROM ${this.tableName}
+      ORDER BY DateWritten DESC
+    `;
+    const params = [];
+
+    return await db.query(sql, params);
+  }
   // Get all blogs with pagination and filtering
   static async findAll(options = {}) {
     const {

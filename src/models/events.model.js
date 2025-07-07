@@ -27,6 +27,16 @@ class Event {
     return result.insertId;
   }
 
+  // Find event by Name
+  static async findByName(name){
+    const sql = `
+      SELECT *
+      FROM ${this.tableName}
+      WHERE Relevance = ?
+    `;
+    const events = await db.query(sql, [name]);
+    return events[0] || null;
+  }
   // Find event by ID
   static async findById(id) {
     const sql = `
@@ -77,6 +87,16 @@ class Event {
     return result.affectedRows > 0;
   }
 
+  static async findEventsAll() {
+    let sql = `
+      SELECT id, ContentType, Title, LastUpdated, Graphic1, Relevance, StartDate, EndDate
+      FROM ${this.tableName}
+      ORDER BY StartDate DESC
+    `;
+    const params = [];
+
+    return await db.query(sql, params);
+  }
   // Get all events with pagination and filtering
   static async findAll(options = {}) {
     const {

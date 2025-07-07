@@ -3,6 +3,25 @@ const Event = require('../models/events.model');
 const Podcast = require('../models/podcasts.model');
 const News = require('../models/news.model');
 
+exports.getAllBlogActivities = async (req, res) => {
+    try {
+        const blogs = await Blog.findAll({ order: [['DateWritten', 'DESC']], limit: 5 });
+        const events = await Event.findAll({ order: [['LastUpdated', 'DESC']], limit: 5 });
+        const podcasts = await Podcast.findAll({ order: [['DatePublished', 'DESC']], limit: 5 });
+        const news = await News.findAll({ order: [['DatePublished', 'DESC']], limit: 5 });
+
+        res.json({
+            blogs,
+            events,
+            podcasts,
+            news
+        });    
+    } catch (error) {
+        res.status(500).json({error: error.message})
+    }
+    
+}
+
 exports.getDashboardData = async (req, res) => {
     try {
         const blogs = await Blog.count();

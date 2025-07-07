@@ -78,6 +78,16 @@ class Podcast {
     return result.affectedRows > 0;
   }
 
+  static async findPodCastssAll() {
+    let sql = `
+      SELECT Id, ContentType, Title, DatePublished, Graphic1, Relevance, Author, Description
+      FROM ${this.tableName}
+      ORDER BY DatePublished DESC
+    `;
+    const params = [];
+
+    return await db.query(sql, params);
+  }
   // Get all podcasts with pagination and filtering
   static async findAll(options = {}) {
     const {

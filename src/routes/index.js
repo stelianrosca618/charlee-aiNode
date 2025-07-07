@@ -10,6 +10,7 @@ const newsRoutes = require('./news.routes'); // Assuming news.routes.js exists
 const eventsRoutes = require('./events.routes'); // Assuming events.routes.js exists
 const modifyRoutes = require('./modify.routes'); // Assuming modify.routes.js exists
 const emailRoutes = require('./email.routes'); // Assuming email.routes.js exists
+const activityRoutes = require('./activities.routes');
 const router = express.Router();
 
 // API Information route
@@ -40,6 +41,7 @@ router.use('/files', fileUploadRoutes);
 router.use('/blogs', blogsRoutes); // Assuming blogs.routes.js exists
 router.use('/podcasts', podcastsRoutes); // Assuming podcasts.routes.js exists
 router.use('/modify', modifyRoutes); // Assuming modify.routes.js exists
+router.use('/activities', activityRoutes);
 router.use('/dashboard', dashboardRoutes); // Assuming dashboard.routes.js exists
 router.use('/news', newsRoutes); // Assuming news.routes.js exists
 router.use('/events', eventsRoutes); // Assuming events.routes.js exists
