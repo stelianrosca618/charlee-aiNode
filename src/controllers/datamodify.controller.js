@@ -129,28 +129,33 @@ exports.insertEventsDB = async(req, res) => {
   try {
     await Promise.all(
       events.map(async (event) => {
-        const eventData = {
-          ContentType: 'Events',
-          Description: '',
-          Title: event.title,
-          Graphic1: event.postMedia,
-          Graphic2: null,
-          Body: null,
-          eventPath: event.link,
-          Phone: event.addressData?.phone || null,
-          Relevance: event.postName,
-          Address: event.addressData?.address || null,
-          Country: event.addressData?.country || null,
-          City: event.addressData?.city || null,
-          State: event.addressData?.state || null,
-          Zip: event.addressData?.zip || null,
-          StartDate: event.eventStartDate,
-          EndDate: event.eventEndDate,
-          Status: 'Active',
-          LastUpdated: event.postDate,
-          LastUpdatedBy: 'Charlee AI',
-        };
-        const addedEvent = await Event.create(eventData);
+        if(!event.eventUrl){
+          console.warn(`Event ${event.postName} has no URL.`);
+          return; // Skip this event if no URL
+        }
+        await Event.updatePathByName(event.postName, event.eventUrl);
+        // const eventData = {
+        //   ContentType: 'Events',
+        //   Description: '',
+        //   Title: event.title,
+        //   Graphic1: event.postMedia,
+        //   Graphic2: null,
+        //   Body: null,
+        //   eventPath: event.eventUrl,
+        //   Phone: event.addressData?.phone || null,
+        //   Relevance: event.postName,
+        //   Address: event.addressData?.address || null,
+        //   Country: event.addressData?.country || null,
+        //   City: event.addressData?.city || null,
+        //   State: event.addressData?.state || null,
+        //   Zip: event.addressData?.zip || null,
+        //   StartDate: event.eventStartDate,
+        //   EndDate: event.eventEndDate,
+        //   Status: 'Active',
+        //   LastUpdated: event.postDate,
+        //   LastUpdatedBy: 'Charlee AI',
+        // };
+        // const addedEvent = await Event.create(eventData);
       })
     );
     res.status(201).json('addedEvent');

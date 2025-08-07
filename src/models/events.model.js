@@ -26,7 +26,15 @@ class Event {
     ]);
     return result.insertId;
   }
-
+  static async updatePathByName(name, eventPath) {
+    const sql = `
+      UPDATE ${this.tableName}
+      SET EventPath = ?
+      WHERE Relevance = ?
+    `;
+    const result = await db.query(sql, [eventPath, name]);
+    return result.affectedRows > 0;
+  }
   // Find event by Name
   static async findByName(name){
     const sql = `
